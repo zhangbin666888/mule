@@ -200,7 +200,7 @@
         <disruptorVersion>3.3.0</disruptorVersion>
         <mockitoVersion>1.10.19</mockitoVersion>
         <muleDslApiVersion>1.0.0-SNAPSHOT</muleDslApiVersion>
-        <muleExtensionsApiVersion>1.0.0-SNAPSHOT</muleExtensionsApiVersion>
+        <muleExtensionsApiVersion>1.0.0-TEST-RELEASE</muleExtensionsApiVersion>
         <multithreadedtcVersion>1.01</multithreadedtcVersion>
         <!-- TODO EE-1395 -->
         <mqSeriesVersion>6.0</mqSeriesVersion>
