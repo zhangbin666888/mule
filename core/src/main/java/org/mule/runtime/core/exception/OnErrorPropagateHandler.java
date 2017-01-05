@@ -102,8 +102,7 @@ public class OnErrorPropagateHandler extends TemplateOnErrorHandler {
   }
 
   @Override
-  protected Publisher<Event> routeAsync(Event event, MessagingException t)
-  {
+  protected Publisher<Event> routeAsync(Event event, MessagingException t) {
     // TODO
     return super.routeAsync(event, t);
   }
