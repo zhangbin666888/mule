@@ -76,6 +76,17 @@ import static org.mule.runtime.module.deployment.internal.MuleDeploymentService.
 import static org.mule.runtime.module.deployment.internal.TestApplicationFactory.createTestApplicationFactory;
 import static org.mule.runtime.module.service.ServiceDescriptorFactory.SERVICE_PROVIDER_CLASS_NAME;
 import static org.mule.tck.junit4.AbstractMuleContextTestCase.TEST_MESSAGE;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.mockito.verification.VerificationMode;
 import org.mule.runtime.api.deployment.meta.MuleArtifactLoaderDescriptor;
 import org.mule.runtime.api.deployment.meta.MulePluginModel.MulePluginModelBuilder;
 import org.mule.runtime.api.deployment.meta.MulePolicyModel.MulePolicyModelBuilder;
@@ -147,18 +158,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import org.mockito.verification.VerificationMode;
-
 @RunWith(Parameterized.class)
 public class DeploymentServiceTestCase extends AbstractMuleTestCase {
 
@@ -190,7 +189,7 @@ public class DeploymentServiceTestCase extends AbstractMuleTestCase {
   public static List<Object[]> parameters() {
     return Arrays.asList(new Object[][] {
         {false},
-        {true},
+        {true}
     });
   }
 
@@ -1584,8 +1583,8 @@ public class DeploymentServiceTestCase extends AbstractMuleTestCase {
     builder.withBundleDescriptorLoader(createPolicyBundleDescriptorLoader(extensionName, MULE_EXTENSION_CLASSIFIER, MAVEN));
 
     final ArtifactPluginFileBuilder byeXmlExtensionPlugin = new ArtifactPluginFileBuilder(extensionName)
-        .containingResource("module-byeSource.xml", moduleDestination)
-        .containingMetaInfResource("module-bye-pom.xml", "pom.xml")
+        .containingRootResource("module-byeSource.xml", moduleDestination)
+        .containingMuleArtifactResource("module-bye-pom.xml", "pom.xml")
         .describedBy(builder.build());
 
     ApplicationFileBuilder applicationFileBuilder = new ApplicationFileBuilder("appWithExtensionXmlPlugin")
@@ -1618,8 +1617,8 @@ public class DeploymentServiceTestCase extends AbstractMuleTestCase {
     builder.withBundleDescriptorLoader(createPolicyBundleDescriptorLoader(extensionName, MULE_EXTENSION_CLASSIFIER, MAVEN));
 
     final ArtifactPluginFileBuilder byeXmlExtensionPlugin = new ArtifactPluginFileBuilder(extensionName)
-        .containingResource("module-using-javaSource.xml", moduleDestination)
-        .containingMetaInfResource("module-using-java-pom.xml", "pom.xml")
+        .containingRootResource("module-using-javaSource.xml", moduleDestination)
+        .containingMuleArtifactResource("module-using-java-pom.xml", "pom.xml")
         .containingRepositoryResource(echoTestJarFile.getAbsolutePath(), "org/foo/echo-test/1.0/echo-test-1.0.jar")
         .containingRepositoryResource("echo-test-pom.xml", "org/foo/echo-test/1.0/echo-test-1.0.pom")
         .describedBy(builder.build());
@@ -1638,7 +1637,7 @@ public class DeploymentServiceTestCase extends AbstractMuleTestCase {
 
     deploymentService.setAppFactory(appFactory);
     startDeployment();
-
+    //loty
     assertDeploymentSuccess(applicationDeploymentListener, applicationFileBuilder.getId());
   }
 
