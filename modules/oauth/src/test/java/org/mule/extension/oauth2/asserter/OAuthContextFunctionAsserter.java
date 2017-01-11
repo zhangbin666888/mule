@@ -33,10 +33,11 @@ public class OAuthContextFunctionAsserter {
 
   public OAuthContextFunctionAsserter assertAccessTokenIs(String expectedAccessToken) {
     if (userId != null) {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s','%s').accessToken", configName, userId)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s','%s').accessToken", configName, userId))
+          .getValue(),
                  Is.<Object>is(expectedAccessToken));
     } else {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s').accessToken", configName)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s').accessToken", configName)).getValue(),
                  Is.<Object>is(expectedAccessToken));
     }
     return this;
@@ -44,11 +45,11 @@ public class OAuthContextFunctionAsserter {
 
   public OAuthContextFunctionAsserter assertRefreshTokenIs(String expectedRefreshToken) {
     if (userId != null) {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s','%s').refreshToken", configName, userId))
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s','%s').refreshToken", configName, userId))
           .getValue(),
                  Is.<Object>is(expectedRefreshToken));
     } else {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s').refreshToken", configName)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s').refreshToken", configName)).getValue(),
                  Is.<Object>is(expectedRefreshToken));
     }
     return this;
@@ -56,10 +57,10 @@ public class OAuthContextFunctionAsserter {
 
   public OAuthContextFunctionAsserter assertState(String expectedState) {
     if (userId != null) {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s','%s').state", configName, userId)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s','%s').state", configName, userId)).getValue(),
                  Is.<Object>is(expectedState));
     } else {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s').state", configName)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s').state", configName)).getValue(),
                  Is.<Object>is(expectedState));
     }
     return this;
@@ -67,10 +68,11 @@ public class OAuthContextFunctionAsserter {
 
   public OAuthContextFunctionAsserter assertExpiresInIs(String expectedExpiresIs) {
     if (userId != null) {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s','%s').expiresIn", configName, userId)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s','%s').expiresIn", configName, userId))
+          .getValue(),
                  Is.<Object>is(expectedExpiresIs));
     } else {
-      assertThat(expressionManager.evaluate(String.format("oauthContext('%s').expiresIn", configName)).getValue(),
+      assertThat(expressionManager.evaluate(String.format("mel:oauthContext('%s').expiresIn", configName)).getValue(),
                  Is.<Object>is(expectedExpiresIs));
     }
     return this;
@@ -79,12 +81,12 @@ public class OAuthContextFunctionAsserter {
   public OAuthContextFunctionAsserter assertContainsCustomTokenResponseParam(String paramName, String paramValue) {
     if (userId != null) {
       assertThat(expressionManager
-          .evaluate(String.format("oauthContext('%s','%s').tokenResponseParameters['%s']", configName, userId, paramName))
+          .evaluate(String.format("mel:oauthContext('%s','%s').tokenResponseParameters['%s']", configName, userId, paramName))
           .getValue(),
                  Is.<Object>is(paramValue));
     } else {
       assertThat(expressionManager
-          .evaluate(String.format("oauthContext('%s').tokenResponseParameters['%s']", configName, paramName)).getValue(),
+          .evaluate(String.format("mel:oauthContext('%s').tokenResponseParameters['%s']", configName, paramName)).getValue(),
                  Is.<Object>is(paramValue));
     }
     return this;

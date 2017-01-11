@@ -15,7 +15,7 @@
     </flow>
 
     <flow name="invalidateOauthContextWithResourceOwnerId">
-        <oauth2:invalidate-oauth-context config-ref="tokenManagerConfig" resourceOwnerId="#[flowVars['resourceOwnerId']]"/>
+        <oauth2:invalidate-oauth-context config-ref="tokenManagerConfig" resourceOwnerId="#[mel:flowVars['resourceOwnerId']]"/>
     </flow>
 
 </mule>

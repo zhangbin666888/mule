@@ -29,7 +29,7 @@
 
     <flow name="someFlow">
         <http:listener config-ref="listenerConfig" path="/afterLogin"/>
-        <test:assert expression="#[message.inboundProperties['http.query.params']['authorizationStatus'] == System.getProperty('expectedStatusCode')]" />
+        <test:assert expression="#[mel:message.inboundProperties['http.query.params']['authorizationStatus'] == System.getProperty('expectedStatusCode')]" />
     </flow>
 
 </mule>
