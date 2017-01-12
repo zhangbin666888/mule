@@ -6,19 +6,17 @@
  */
 package org.mule.runtime.core.internal.metadata;
 
-import static org.mule.runtime.api.i18n.I18nMessageFactory.createStaticMessage;
-import static org.mule.runtime.core.util.ClassUtils.getClassName;
 import static org.mule.runtime.api.util.Preconditions.checkArgument;
-import org.mule.runtime.api.metadata.resolving.InputTypeResolver;
 import org.mule.runtime.api.metadata.resolving.AttributesTypeResolver;
+import org.mule.runtime.api.metadata.resolving.InputTypeResolver;
 import org.mule.runtime.api.metadata.resolving.OutputTypeResolver;
 import org.mule.runtime.api.metadata.resolving.QueryEntityResolver;
 import org.mule.runtime.api.metadata.resolving.TypeKeysResolver;
-import org.mule.runtime.api.exception.MuleRuntimeException;
-import org.mule.runtime.core.util.ClassUtils;
 import org.mule.runtime.extension.api.metadata.MetadataResolverFactory;
 import org.mule.runtime.extension.api.metadata.NullMetadataResolver;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -74,6 +72,14 @@ public final class DefaultMetadataResolverFactory implements MetadataResolverFac
   public <T> InputTypeResolver<T> getInputResolver(String parameterName) {
     return inputResolvers.getOrDefault(parameterName, new NullMetadataResolver());
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public Collection<InputTypeResolver> getInputResolvers() {
+    return Collections.unmodifiableCollection(inputResolvers.values());
+  }
+
 
   /**
    * {@inheritDoc}

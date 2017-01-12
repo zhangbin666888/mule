@@ -24,6 +24,9 @@ import java.util.Set;
  */
 class NullQueryEntityMetadataResolver implements QueryEntityResolver {
 
+  private static final String NULL_ENTITY_CATEGORY_NAME = "NullEntityCategory";
+  private static final String NULL_ENTITY_RESOLVER_NAME = "NullEntityResolver";
+
   /**
    * {@inheritDoc}
    *
@@ -45,5 +48,15 @@ class NullQueryEntityMetadataResolver implements QueryEntityResolver {
       throws MetadataResolvingException, ConnectionException {
     // TODO - MDM-21: change when VoidType is added to the MDM
     return null;
+  }
+
+  @Override
+  public String getCategoryName() {
+    return NULL_ENTITY_CATEGORY_NAME;
+  }
+
+  @Override
+  public String getResolverName() {
+    return NULL_ENTITY_RESOLVER_NAME;
   }
 }

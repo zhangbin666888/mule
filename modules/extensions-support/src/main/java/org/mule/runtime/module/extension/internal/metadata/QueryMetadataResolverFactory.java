@@ -20,6 +20,9 @@ import org.mule.runtime.extension.api.annotation.param.Query;
 import org.mule.runtime.extension.api.metadata.MetadataResolverFactory;
 import org.mule.runtime.extension.api.metadata.NullMetadataResolver;
 
+import java.util.Collection;
+import java.util.Collections;
+
 
 /**
  * A {@link MetadataResolverFactory} implementation for {@link Query} operations, it provides initialized instances of
@@ -57,6 +60,11 @@ public final class QueryMetadataResolverFactory implements MetadataResolverFacto
   @Override
   public <T> InputTypeResolver<T> getInputResolver(String parameterName) {
     return (InputTypeResolver<T>) new NullMetadataResolver();
+  }
+
+  @Override
+  public Collection<InputTypeResolver> getInputResolvers() {
+    return Collections.emptyList();
   }
 
   /**

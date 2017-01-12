@@ -6,13 +6,16 @@
  */
 package org.mule.runtime.core.internal.metadata;
 
-import org.mule.runtime.api.metadata.resolving.InputTypeResolver;
-import org.mule.runtime.api.metadata.resolving.TypeKeysResolver;
-import org.mule.runtime.api.metadata.resolving.OutputTypeResolver;
+import static java.util.Collections.emptyList;
 import org.mule.runtime.api.metadata.resolving.AttributesTypeResolver;
+import org.mule.runtime.api.metadata.resolving.InputTypeResolver;
+import org.mule.runtime.api.metadata.resolving.OutputTypeResolver;
 import org.mule.runtime.api.metadata.resolving.QueryEntityResolver;
+import org.mule.runtime.api.metadata.resolving.TypeKeysResolver;
 import org.mule.runtime.extension.api.metadata.MetadataResolverFactory;
 import org.mule.runtime.extension.api.metadata.NullMetadataResolver;
+
+import java.util.Collection;
 
 /**
  * Null implementation of a {@link MetadataResolverFactory}, which returns a {@link NullMetadataResolver} for every resolver
@@ -42,6 +45,11 @@ public class NullMetadataResolverFactory implements MetadataResolverFactory {
   @Override
   public <T> InputTypeResolver<T> getInputResolver(String parameterName) {
     return (InputTypeResolver<T>) metadataResolver;
+  }
+
+  @Override
+  public Collection<InputTypeResolver> getInputResolvers() {
+    return emptyList();
   }
 
   /**

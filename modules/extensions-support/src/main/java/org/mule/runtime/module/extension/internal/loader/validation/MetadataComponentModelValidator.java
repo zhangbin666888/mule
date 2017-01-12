@@ -198,6 +198,7 @@ public class MetadataComponentModelValidator implements ExtensionModelValidator 
     }
   }
 
+  // todo refactor with metadata factory getCategoryName()
   private void validateCategoriesInScope(ComponentModel componentModel, MetadataResolverFactory metadataResolverFactory,
                                          ProblemsReporter problemsReporter) {
 
