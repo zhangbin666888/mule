@@ -22,6 +22,7 @@ public class MuleFoldersUtil {
 
   public static final String EXECUTION_FOLDER = ".mule";
   public static final String LIB_FOLDER = "lib";
+  public static final String SHARED_FOLDER = "shared";
   public static final String APPS_FOLDER = "apps";
   public static final String PLUGINS_FOLDER = "plugins";
   public static final String CLASSES_FOLDER = "classes";
@@ -89,8 +90,8 @@ public class MuleFoldersUtil {
     return new File(getAppFolder(appName), PLUGINS_FOLDER);
   }
 
-  public static File getAppSharedPluginLibsFolder(String appName) {
-    return new File(getAppPluginsFolder(appName), LIB_FOLDER);
+  public static File getAppSharedLibsFolder(String appName) {
+    return new File(getAppLibFolder(appName), SHARED_FOLDER);
   }
 
   public static File getExecutionFolder() {
